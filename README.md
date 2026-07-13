@@ -1,66 +1,234 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# StockPilot API 🚀
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**StockPilot API** adalah backend REST API untuk sistem **SaaS Inventory Management** berbasis Laravel. Project ini dirancang dengan konsep **multi-tenant architecture**, di mana setiap perusahaan memiliki data inventory dan user masing-masing secara terisolasi.
 
-## About Laravel
+Project ini dibuat untuk membangun sistem manajemen stok yang scalable, aman, dan siap dikembangkan menjadi aplikasi SaaS dengan frontend terpisah.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Backend:** Laravel 12
+* **Language:** PHP 8.3
+* **Database:** MySQL
+* **Authentication:** Laravel Sanctum
+* **API Testing:** Postman
+* **Development Environment:** Laragon
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Current Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Authentication
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* ✅ User Registration
+* ✅ User Login
+* ✅ User Logout
+* ✅ Get Current User (`/api/me`)
+* ✅ Token Authentication menggunakan Laravel Sanctum
 
-## Laravel Sponsors
+### Multi Tenant System
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* ✅ Company Management Foundation
+* ✅ User terhubung dengan Company
+* ✅ Data isolation berdasarkan `company_id`
 
-### Premium Partners
+### Category Management
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+* ✅ Create Category
+* 🔄 Read Category
+* 🔄 Update Category
+* 🔄 Delete Category
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🏗️ Project Architecture
 
-## Code of Conduct
+Konsep utama StockPilot menggunakan sistem multi-tenant:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+Company
+   |
+   ├── Users
+   |
+   ├── Categories
+   |
+   ├── Products
+   |
+   └── Inventory Transactions
+```
 
-## Security Vulnerabilities
+Setiap data bisnis akan memiliki hubungan dengan `company_id`, sehingga satu perusahaan tidak dapat mengakses data perusahaan lain.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 📂 Folder Structure
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+stockpilot-api/
+│
+├── app/
+│   ├── Models/
+│   ├── Http/
+│   │   └── Controllers/
+│
+├── database/
+│   └── migrations/
+│
+├── routes/
+│   └── api.php
+│
+├── config/
+│
+├── public/
+│
+└── artisan
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/imZaaa/StockPilot-API.git
+```
+
+Masuk ke folder project:
+
+```bash
+cd StockPilot-API
+```
+
+---
+
+### 2. Install Dependency
+
+```bash
+composer install
+```
+
+---
+
+### 3. Setup Environment
+
+Copy file `.env.example` menjadi `.env`
+
+```bash
+cp .env.example .env
+```
+
+Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+---
+
+### 4. Configure Database
+
+Edit file `.env`
+
+```env
+DB_DATABASE=stockpilot
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+### 5. Run Migration
+
+```bash
+php artisan migrate
+```
+
+---
+
+### 6. Run Application
+
+```bash
+php artisan serve
+```
+
+API berjalan di:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+## 🔐 API Authentication
+
+StockPilot menggunakan Laravel Sanctum.
+
+Setelah login berhasil, API akan memberikan token:
+
+```
+Bearer Token
+```
+
+Token tersebut digunakan untuk mengakses endpoint yang membutuhkan autentikasi.
+
+Contoh:
+
+```
+Authorization: Bearer {token}
+```
+
+---
+
+## 📌 API Endpoint
+
+### Authentication
+
+| Method | Endpoint        | Description              |
+| ------ | --------------- | ------------------------ |
+| POST   | `/api/register` | Register company & owner |
+| POST   | `/api/login`    | User login               |
+| POST   | `/api/logout`   | Logout user              |
+| GET    | `/api/me`       | Get authenticated user   |
+
+---
+
+### Categories
+
+| Method | Endpoint               | Description         |
+| ------ | ---------------------- | ------------------- |
+| POST   | `/api/categories`      | Create category     |
+| GET    | `/api/categories`      | Get categories      |
+| GET    | `/api/categories/{id}` | Get category detail |
+| PUT    | `/api/categories/{id}` | Update category     |
+| DELETE | `/api/categories/{id}` | Delete category     |
+
+---
+
+## 🛣️ Development Roadmap
+
+* [x] Authentication System
+* [x] Laravel Sanctum Integration
+* [x] Multi Tenant Foundation
+* [x] Category Module
+* [ ] Product Management
+* [ ] Supplier Management
+* [ ] Stock In / Stock Out
+* [ ] Inventory History
+* [ ] Dashboard Analytics
+* [ ] Next.js Frontend Integration
+
+---
+
+## 🎯 Goal
+
+StockPilot dikembangkan sebagai project portfolio untuk membangun sistem SaaS inventory management dengan pendekatan backend engineering yang scalable dan maintainable.
+
+---
+
+## 👨‍💻 Author
+
+**imZaaa**
+
+Built with Laravel ❤️
