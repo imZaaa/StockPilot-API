@@ -1,4 +1,4 @@
-# StockPilot API 🚀
+# StockPilot API 
 
 **StockPilot API** adalah backend REST API untuk sistem **SaaS Inventory Management** berbasis Laravel. Project ini dirancang dengan konsep **multi-tenant architecture**, di mana setiap perusahaan memiliki data inventory dan user masing-masing secara terisolasi.
 
